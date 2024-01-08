@@ -1,0 +1,1 @@
+queue_requests false # The reactor will injest more traffic than it can handle, leading to high p99 and unfairly penalizing 1 thread setups
