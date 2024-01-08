@@ -12,9 +12,29 @@ puts "#{RESPONSE_TIME_SECONDS} seconds average response duration (approximate, n
 puts "#{GARBAGE_OBJECTS_COUNT} objects are generated w/each request"
 puts "We will decide to do CPU or IO every #{TICK_RATE_SECONDS * 1000.0} milliseconds"
 
+def fibonacci(i)
+  if i <= 1
+    i
+  else
+    fibonacci(i - 1) + fibonacci(i - 2)
+  end
+end
+
+require "benchmark"
+FIB_DEPTH = 15
+# We compute how long our loop take without thread preemption nor GC, so we can
+# perform a constant amount of work every time.
+# Another solution could be to use CLOCK_THREAD_CPUTIME_ID, but it include MRI's spurious
+# check so it's quite accurate enough.
+CPU_LOOP_DURATION = (100.times.map { Benchmark.realtime { fibonacci(FIB_DEPTH) } })[49]
+if CPU_LOOP_DURATION > (TICK_RATE_SECONDS / 5)
+  abort "CPU_LOOP_DURATION is too large for TICK_RATE_SECONDS"
+end
+puts "CPU iteration: #{CPU_LOOP_DURATION * 1_000.0}ms"
+
 def cpu_spin(seconds)
-  time = Time.now
-  while (time + seconds) > Time.now
+  (seconds / CPU_LOOP_DURATION).ceil.times do
+    fibonacci(FIB_DEPTH)
   end
 end
 
