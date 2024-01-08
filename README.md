@@ -17,7 +17,7 @@ There are several sensitive parameters here:
 | Response time of the app               | config.ru                       | 250 ms                                                                     | This is approximate, because it doesn't account for GC time. The app will try to do about this many ms of work. |
 | Garbage objects generated per response | config.ru                       | 300000                                                                     | Intended to simulate tail latencies.                                                                         |
 | Tick rate                              | config.ru                       | 10ms                                                                       | Every tick, we decide randomly to do either IO or CPU work for the entire tick.                              |
-| Thresholds for failure                 | k6/script.js and j6/constant.js | Average response time must be less than 375ms p99 must be less than 1000ms | The benchmark will stop and fail if these thresholds are met                                                 |
+| Thresholds for failure                 | k6/script.js and k6/constant.js | Average response time must be less than 375ms p99 must be less than 1000ms | The benchmark will stop and fail if these thresholds are met                                                 |
 
 ## Design
 
