@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+bundle exec puma &
+PIDPUMA=$!
+sleep 3
+ab -n 50  http://127.0.0.1:9292/ &
+PIDBENCH=$!
+
+wait $PIDBENCH
+kill $PIDPUMA
+echo 'Benchmark complete.'
