@@ -14,11 +14,11 @@ export const options = {
       timeUnit: '1s',
 
       // Pre-allocate necessary VUs.
-      preAllocatedVUs: 5,
+      preAllocatedVUs: 10,
 
       stages: [
         // k6 will linearly ramp up from startRate/timeUnit to this target of iterations per timeunit over the duration.
-        { target: 6, duration: '1m' },
+        { target: 8, duration: '1m30s' },
       ],
     },
   },

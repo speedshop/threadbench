@@ -14,7 +14,7 @@ export const options = {
       timeUnit: '1s',
 
       // Pre-allocate necessary VUs.
-      preAllocatedVUs: 5,
+      preAllocatedVUs: 10,
 
       duration: '60s'
     },
