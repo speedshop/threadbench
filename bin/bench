@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-PUMATHREADS=${1:-1}
+export PUMATHREADS=${1:-1}
+
+# Defaulting to 50% IO and 100ms responses.
+export RESPONSE_TIME_SECONDS=${RESPONSE_TIME_SECONDS:-0.1}
+export IO_WAIT_RATIO=${IO_WAIT_RATIO:-0.5}
 
 bundle exec puma -C puma.rb -t $PUMATHREADS &
 PIDPUMA=$!
