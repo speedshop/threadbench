@@ -14,7 +14,7 @@ echo "Warming up for 15 seconds..."
 k6 run --duration 15s --quiet k6/script.js > /dev/null
 
 echo "Benchmarking..."
-k6 run --summary-trend-stats "min,avg,med,max,p(95),p(99),p(99.99)" k6/script.js &
+k6 run --summary-trend-stats "min,avg,med,max,p(75),p(99),p(99.99)" k6/script.js &
 PIDBENCH=$!
 
 wait $PIDBENCH
