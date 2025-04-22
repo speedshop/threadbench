@@ -8,17 +8,17 @@ export const options = {
       executor: 'ramping-arrival-rate',
 
       // Start iterations per `timeUnit`
-      startRate: 2,
+      startRate: 1,
 
       // Start `startRate` iterations per timeUnit
       timeUnit: '1s',
 
       // Pre-allocate necessary VUs.
-      preAllocatedVUs: 10,
+      preAllocatedVUs: 25,
 
       stages: [
         // k6 will linearly ramp up from startRate/timeUnit to this target of iterations per timeunit over the duration.
-        { target: 8, duration: '1m30s' },
+        { target: 50, duration: '1m30s' },
       ],
     },
   },

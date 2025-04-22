@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export PUMATHREADS=${1:-1}
+export PUMATHREADS=${PUMATHREADS:-1}
 
 # Defaulting to 50% IO and 100ms responses.
 export RESPONSE_TIME_SECONDS=${RESPONSE_TIME_SECONDS:-0.1}
